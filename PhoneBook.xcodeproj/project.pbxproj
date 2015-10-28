@@ -9,10 +9,15 @@
 /* Begin PBXBuildFile section */
 		87443CDB1BE10B5700EC70F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87443CDA1BE10B5700EC70F2 /* main.m */; };
 		87443CDE1BE10B5700EC70F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87443CDD1BE10B5700EC70F2 /* AppDelegate.m */; };
-		87443CE11BE10B5700EC70F2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87443CE01BE10B5700EC70F2 /* ViewController.m */; };
 		87443CE41BE10B5700EC70F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87443CE21BE10B5700EC70F2 /* Main.storyboard */; };
 		87443CE61BE10B5700EC70F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87443CE51BE10B5700EC70F2 /* Assets.xcassets */; };
 		87443CE91BE10B5700EC70F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87443CE71BE10B5700EC70F2 /* LaunchScreen.storyboard */; };
+		87443CF21BE11D5600EC70F2 /* VGCancelSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 87443CF11BE11D5600EC70F2 /* VGCancelSegue.m */; };
+		87443CF71BE11DDC00EC70F2 /* VGTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87443CF61BE11DDC00EC70F2 /* VGTableViewController.m */; };
+		87443D051BE1285000EC70F2 /* VGSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87443D041BE1285000EC70F2 /* VGSettingsViewController.m */; };
+		87443D081BE1288600EC70F2 /* VGDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87443D071BE1288600EC70F2 /* VGDetailViewController.m */; };
+		87443D0B1BE128B400EC70F2 /* VGCreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87443D0A1BE128B400EC70F2 /* VGCreateViewController.m */; };
+		87443D0F1BE1525200EC70F2 /* VGCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87443D0E1BE1525100EC70F2 /* VGCustomCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,12 +25,22 @@
 		87443CDA1BE10B5700EC70F2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		87443CDC1BE10B5700EC70F2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		87443CDD1BE10B5700EC70F2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		87443CDF1BE10B5700EC70F2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		87443CE01BE10B5700EC70F2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		87443CE31BE10B5700EC70F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		87443CE51BE10B5700EC70F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		87443CE81BE10B5700EC70F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		87443CEA1BE10B5700EC70F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		87443CF01BE11D5600EC70F2 /* VGCancelSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGCancelSegue.h; path = Segues/VGCancelSegue.h; sourceTree = "<group>"; };
+		87443CF11BE11D5600EC70F2 /* VGCancelSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGCancelSegue.m; path = Segues/VGCancelSegue.m; sourceTree = "<group>"; };
+		87443CF51BE11DDC00EC70F2 /* VGTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGTableViewController.h; path = ViewControllers/TableViewController/VGTableViewController.h; sourceTree = "<group>"; };
+		87443CF61BE11DDC00EC70F2 /* VGTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGTableViewController.m; path = ViewControllers/TableViewController/VGTableViewController.m; sourceTree = "<group>"; };
+		87443D031BE1285000EC70F2 /* VGSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGSettingsViewController.h; path = ViewControllers/SettingsViewController/VGSettingsViewController.h; sourceTree = "<group>"; };
+		87443D041BE1285000EC70F2 /* VGSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGSettingsViewController.m; path = ViewControllers/SettingsViewController/VGSettingsViewController.m; sourceTree = "<group>"; };
+		87443D061BE1288600EC70F2 /* VGDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGDetailViewController.h; path = ViewControllers/DetailViewController/VGDetailViewController.h; sourceTree = "<group>"; };
+		87443D071BE1288600EC70F2 /* VGDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGDetailViewController.m; path = ViewControllers/DetailViewController/VGDetailViewController.m; sourceTree = "<group>"; };
+		87443D091BE128B400EC70F2 /* VGCreateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGCreateViewController.h; path = ViewControllers/CreateViewController/VGCreateViewController.h; sourceTree = "<group>"; };
+		87443D0A1BE128B400EC70F2 /* VGCreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGCreateViewController.m; path = ViewControllers/CreateViewController/VGCreateViewController.m; sourceTree = "<group>"; };
+		87443D0D1BE1525100EC70F2 /* VGCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGCustomCell.h; path = Cells/VGCustomCell.h; sourceTree = "<group>"; };
+		87443D0E1BE1525100EC70F2 /* VGCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGCustomCell.m; path = Cells/VGCustomCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,14 +73,12 @@
 		87443CD81BE10B5700EC70F2 /* PhoneBook */ = {
 			isa = PBXGroup;
 			children = (
-				87443CDC1BE10B5700EC70F2 /* AppDelegate.h */,
-				87443CDD1BE10B5700EC70F2 /* AppDelegate.m */,
-				87443CDF1BE10B5700EC70F2 /* ViewController.h */,
-				87443CE01BE10B5700EC70F2 /* ViewController.m */,
-				87443CE21BE10B5700EC70F2 /* Main.storyboard */,
-				87443CE51BE10B5700EC70F2 /* Assets.xcassets */,
-				87443CE71BE10B5700EC70F2 /* LaunchScreen.storyboard */,
+				87443D101BE1525700EC70F2 /* CustomCell */,
+				87443CFD1BE1272500EC70F2 /* ViewControllers */,
+				87443CFE1BE1274E00EC70F2 /* StoryBoards */,
 				87443CEA1BE10B5700EC70F2 /* Info.plist */,
+				87443CF31BE11D5C00EC70F2 /* Segue */,
+				87443CF41BE11D6800EC70F2 /* AppDelegate */,
 				87443CD91BE10B5700EC70F2 /* Supporting Files */,
 			);
 			path = PhoneBook;
@@ -74,9 +87,93 @@
 		87443CD91BE10B5700EC70F2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				87443CE51BE10B5700EC70F2 /* Assets.xcassets */,
 				87443CDA1BE10B5700EC70F2 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		87443CF31BE11D5C00EC70F2 /* Segue */ = {
+			isa = PBXGroup;
+			children = (
+				87443CF01BE11D5600EC70F2 /* VGCancelSegue.h */,
+				87443CF11BE11D5600EC70F2 /* VGCancelSegue.m */,
+			);
+			name = Segue;
+			sourceTree = "<group>";
+		};
+		87443CF41BE11D6800EC70F2 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				87443CDC1BE10B5700EC70F2 /* AppDelegate.h */,
+				87443CDD1BE10B5700EC70F2 /* AppDelegate.m */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+		87443CF81BE11DE200EC70F2 /* PhoheBookTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				87443CF51BE11DDC00EC70F2 /* VGTableViewController.h */,
+				87443CF61BE11DDC00EC70F2 /* VGTableViewController.m */,
+			);
+			name = PhoheBookTableViewController;
+			sourceTree = "<group>";
+		};
+		87443CFC1BE1271000EC70F2 /* DetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				87443D061BE1288600EC70F2 /* VGDetailViewController.h */,
+				87443D071BE1288600EC70F2 /* VGDetailViewController.m */,
+			);
+			name = DetailViewController;
+			sourceTree = "<group>";
+		};
+		87443CFD1BE1272500EC70F2 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				87443D021BE127B600EC70F2 /* SettingsViewController */,
+				87443CF81BE11DE200EC70F2 /* PhoheBookTableViewController */,
+				87443CFC1BE1271000EC70F2 /* DetailViewController */,
+				87443D0C1BE128B900EC70F2 /* CreateViewController */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		87443CFE1BE1274E00EC70F2 /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				87443CE21BE10B5700EC70F2 /* Main.storyboard */,
+				87443CE71BE10B5700EC70F2 /* LaunchScreen.storyboard */,
+			);
+			name = StoryBoards;
+			sourceTree = "<group>";
+		};
+		87443D021BE127B600EC70F2 /* SettingsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				87443D031BE1285000EC70F2 /* VGSettingsViewController.h */,
+				87443D041BE1285000EC70F2 /* VGSettingsViewController.m */,
+			);
+			name = SettingsViewController;
+			sourceTree = "<group>";
+		};
+		87443D0C1BE128B900EC70F2 /* CreateViewController */ = {
+			isa = PBXGroup;
+			children = (
+				87443D091BE128B400EC70F2 /* VGCreateViewController.h */,
+				87443D0A1BE128B400EC70F2 /* VGCreateViewController.m */,
+			);
+			name = CreateViewController;
+			sourceTree = "<group>";
+		};
+		87443D101BE1525700EC70F2 /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				87443D0D1BE1525100EC70F2 /* VGCustomCell.h */,
+				87443D0E1BE1525100EC70F2 /* VGCustomCell.m */,
+			);
+			name = CustomCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -105,6 +202,7 @@
 		87443CCE1BE10B5600EC70F2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = VG;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = Vlad;
 				TargetAttributes = {
@@ -150,8 +248,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87443CE11BE10B5700EC70F2 /* ViewController.m in Sources */,
+				87443D081BE1288600EC70F2 /* VGDetailViewController.m in Sources */,
+				87443D0F1BE1525200EC70F2 /* VGCustomCell.m in Sources */,
 				87443CDE1BE10B5700EC70F2 /* AppDelegate.m in Sources */,
+				87443CF21BE11D5600EC70F2 /* VGCancelSegue.m in Sources */,
+				87443D0B1BE128B400EC70F2 /* VGCreateViewController.m in Sources */,
+				87443CF71BE11DDC00EC70F2 /* VGTableViewController.m in Sources */,
+				87443D051BE1285000EC70F2 /* VGSettingsViewController.m in Sources */,
 				87443CDB1BE10B5700EC70F2 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

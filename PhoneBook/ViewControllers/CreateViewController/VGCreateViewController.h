@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  VGCreateViewController.h
 //  PhoneBook
 //
 //  Created by Vladyslav on 28.10.15.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface VGCreateViewController : UIViewController
 
 @end
-
