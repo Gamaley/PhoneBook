@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class VGPerson;
+
 @interface VGTableViewController : UITableViewController
+
+@property (strong,nonatomic) VGPerson* person;
+@property (strong,nonatomic) NSMutableArray* cells;
+
+
+//- (id)initWithFolderPath:(NSString*) path;
 
 @end

@@ -18,6 +18,7 @@
 		87443D081BE1288600EC70F2 /* VGDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87443D071BE1288600EC70F2 /* VGDetailViewController.m */; };
 		87443D0B1BE128B400EC70F2 /* VGCreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87443D0A1BE128B400EC70F2 /* VGCreateViewController.m */; };
 		87443D0F1BE1525200EC70F2 /* VGCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87443D0E1BE1525100EC70F2 /* VGCustomCell.m */; };
+		87443D131BE265BA00EC70F2 /* VGPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 87443D121BE265BA00EC70F2 /* VGPerson.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,8 @@
 		87443D0A1BE128B400EC70F2 /* VGCreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGCreateViewController.m; path = ViewControllers/CreateViewController/VGCreateViewController.m; sourceTree = "<group>"; };
 		87443D0D1BE1525100EC70F2 /* VGCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGCustomCell.h; path = Cells/VGCustomCell.h; sourceTree = "<group>"; };
 		87443D0E1BE1525100EC70F2 /* VGCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGCustomCell.m; path = Cells/VGCustomCell.m; sourceTree = "<group>"; };
+		87443D111BE265BA00EC70F2 /* VGPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGPerson.h; path = Model/VGPerson.h; sourceTree = "<group>"; };
+		87443D121BE265BA00EC70F2 /* VGPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGPerson.m; path = Model/VGPerson.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +76,7 @@
 		87443CD81BE10B5700EC70F2 /* PhoneBook */ = {
 			isa = PBXGroup;
 			children = (
+				87443D141BE265C100EC70F2 /* Model */,
 				87443D101BE1525700EC70F2 /* CustomCell */,
 				87443CFD1BE1272500EC70F2 /* ViewControllers */,
 				87443CFE1BE1274E00EC70F2 /* StoryBoards */,
@@ -176,6 +180,15 @@
 			name = CustomCell;
 			sourceTree = "<group>";
 		};
+		87443D141BE265C100EC70F2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				87443D111BE265BA00EC70F2 /* VGPerson.h */,
+				87443D121BE265BA00EC70F2 /* VGPerson.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -255,6 +268,7 @@
 				87443D0B1BE128B400EC70F2 /* VGCreateViewController.m in Sources */,
 				87443CF71BE11DDC00EC70F2 /* VGTableViewController.m in Sources */,
 				87443D051BE1285000EC70F2 /* VGSettingsViewController.m in Sources */,
+				87443D131BE265BA00EC70F2 /* VGPerson.m in Sources */,
 				87443CDB1BE10B5700EC70F2 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -402,6 +416,7 @@
 				87443CEF1BE10B5700EC70F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

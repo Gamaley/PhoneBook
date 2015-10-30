@@ -13,7 +13,7 @@
 -(void) perform {
     UITableViewController* source = (UITableViewController*)self.sourceViewController;
     [source.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-    
+    [source viewDidLoad];
 }
 
 @end

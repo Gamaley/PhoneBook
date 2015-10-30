@@ -7,15 +7,69 @@
 //
 
 #import "VGTableViewController.h"
+#import "VGPerson.h"
 
 @interface VGTableViewController ()
+
+@property(strong,nonatomic) NSString* path;
+@property (strong,nonatomic) NSArray* contents;
+
+@property (strong, nonatomic) IBOutlet UITableView *tablePhoneView;
 
 @end
 
 @implementation VGTableViewController
+/*
+- (id)initWithFolderPath:(NSString*) path {
+
+    self = [super initWithStyle:UITableViewStyleGrouped];
+    
+    if (self) {
+        self.path = path;
+        NSError* error = nil;
+        self.contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.path error:&error];
+        
+        if (error) {
+            NSLog(@"%@",[error localizedDescription]);
+        }
+    }
+    return self;
+}
+*/
+- (void)viewWillAppear:(BOOL)animated {
+     [self.tablePhoneView reloadData];
+    NSLog(@"%ld",[self.navigationController.viewControllers count]);
+    [super viewWillAppear:animated];
+    
+}
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
+    
+    
+    
+    NSArray* pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//NSLog(@"%@",pathArray);
+    
+    self.path = [pathArray objectAtIndex:0];
+    
+    NSError* error = nil;
+    self.contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.path error:&error];
+    [self.contents count];
+    if (error) {
+        NSLog(@"%@",[error localizedDescription]);
+    }
+
+    
+    self.person = [[VGPerson alloc] init];
+    self.cells = [[NSMutableArray alloc] init];
+   
+       // NSLog(@"%@",self.path);
+    
+   
+
+
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -29,25 +83,46 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return [self.contents count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    // Configure the cell...
+    static NSString* Identifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier];
+    
+    
+    if (!cell) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
+    }
+    
+    NSString* fileName = [self.contents objectAtIndex:indexPath.row];
+    
+    //VGPerson* person = [self.contents objectAtIndex:indexPath.row];
+    
+    cell.textLabel.text = fileName;
     
     return cell;
 }
-*/
+
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self performSegueWithIdentifier:@"pushDetail" sender:self];
+    
+}
 
 /*
 // Override to support conditional editing of the table view.

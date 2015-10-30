@@ -15,11 +15,11 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="Cell" rowHeight="62" id="Rsw-dJ-9SL" customClass="VGCustomCell">
-                                <rect key="frame" x="0.0" y="92" width="320" height="62"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="62" id="Rsw-dJ-9SL">
+                                <rect key="frame" x="0.0" y="28" width="320" height="62"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rsw-dJ-9SL" id="KnX-fB-fde">
-                                    <rect key="frame" x="0.0" y="0.0" width="253" height="61"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="61"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="fUt-lF-2ty">
@@ -48,7 +48,7 @@
                                 </tableViewCellContentView>
                                 <animations/>
                                 <connections>
-                                    <segue destination="yI5-uV-ifO" kind="push" trigger="accessoryAction" id="zfO-Sn-d2A"/>
+                                    <segue destination="yI5-uV-ifO" kind="push" identifier="pushDetail" trigger="accessoryAction" id="zfO-Sn-d2A"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -69,6 +69,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tablePhoneView" destination="pWJ-P6-vao" id="HgV-ii-3vg"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cjP-76-3ia" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -102,24 +105,36 @@
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next"/>
+                                <connections>
+                                    <outlet property="delegate" destination="UBS-LN-OJx" id="Qua-ZZ-uUf"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="last name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="SXr-3r-7Lp">
                                 <rect key="frame" x="20" y="158" width="280" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next"/>
+                                <connections>
+                                    <outlet property="delegate" destination="UBS-LN-OJx" id="WhT-fH-2Sq"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e-mail" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="oq5-Sk-d67">
                                 <rect key="frame" x="20" y="196" width="280" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next"/>
+                                <connections>
+                                    <outlet property="delegate" destination="UBS-LN-OJx" id="Ny0-cI-PnK"/>
+                                </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="phone number" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ZAJ-bC-x6N">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="phone number like 380951234567" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ZAJ-bC-x6N">
                                 <rect key="frame" x="20" y="234" width="280" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="UBS-LN-OJx" id="QA2-53-RIC"/>
+                                </connections>
                             </textField>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ydf-gb-bOn">
                                 <rect key="frame" x="0.0" y="17" width="320" height="44"/>
@@ -131,10 +146,15 @@
                                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="B3Z-dO-40k">
                                             <color key="tintColor" red="0.99733664769999997" green="0.32104944200000002" blue="0.28769812340000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
-                                                <segue destination="mpl-gC-UNU" kind="custom" customClass="VGCancelSegue" id="pbd-fC-k29"/>
+                                                <action selector="backSegueButton:" destination="UBS-LN-OJx" id="bvD-ok-fAL"/>
+                                                <segue destination="mpl-gC-UNU" kind="custom" identifier="back" customClass="VGCancelSegue" id="pbd-fC-k29"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="fYg-xg-IdX"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="fYg-xg-IdX">
+                                            <connections>
+                                                <action selector="saveBarButton:" destination="UBS-LN-OJx" id="qfm-3c-7hq"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -148,10 +168,16 @@
                     </navigationItem>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="emailField" destination="oq5-Sk-d67" id="H7W-6p-5PG"/>
+                        <outlet property="firstNameField" destination="OAo-37-kxN" id="Blb-eW-xif"/>
+                        <outlet property="lastNameField" destination="SXr-3r-7Lp" id="B6Z-Q9-ehB"/>
+                        <outlet property="phoneNumberField" destination="ZAJ-bC-x6N" id="9ii-vO-pDX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Bx-nu-0LL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1006" y="1205"/>
+            <point key="canvasLocation" x="1056" y="1203"/>
         </scene>
         <!--Details-->
         <scene sceneID="Ua3-YQ-aTX">

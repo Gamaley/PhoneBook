@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"%ld",[self.navigationController.viewControllers count]);
     // Do any additional setup after loading the view.
 }
 
