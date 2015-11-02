@@ -10,17 +10,59 @@
 #import "VGPerson.h"
 #import "VGTableViewController.h"
 
-@interface VGCreateViewController () <UITextFieldDelegate>
+@interface VGCreateViewController () <UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *firstNameField;
 @property (weak, nonatomic) IBOutlet UITextField *lastNameField;
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumberField;
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 
 @implementation VGCreateViewController
 
+
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        [self noCameraAlert];
+    }
+    
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+
+
+
+
+#pragma mark - IBAction
+
+-(IBAction)takeAPhoto:(id)sender {
+    
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+    
+}
+
+-(IBAction)choosePhoto:(id)sender {
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+}
 
 
 - (IBAction)saveBarButton:(UIBarButtonItem *)sender {
@@ -58,6 +100,7 @@
     
     NSString* newDocumentDir = [contactsPath stringByAppendingPathComponent:namePlist];
     
+    NSData* dataImage = UIImagePNGRepresentation(self.imageView.image);
     
     
     NSMutableArray* arr = [[NSMutableArray alloc] init];
@@ -65,32 +108,34 @@
     [arr addObject:self.lastNameField.text];
     [arr addObject:self.emailField.text];
     [arr addObject:self.phoneNumberField.text];
+    [arr addObject:dataImage];
    
     
     [arr writeToFile:newDocumentDir atomically:YES];
   
-    //
-    //    NSString* str =  NSTemporaryDirectory();
-    //    NSLog(@"%@",newDocumentDir);
-    //
     
 }
 
 
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-     
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
-
-
-
 #pragma mark - UIAlertController
+
+-(void) noCameraAlert {
+    
+    UIAlertController* noCameraAlert = [UIAlertController alertControllerWithTitle:@"Error!" message:@"Device has no camera" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* alertAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    [noCameraAlert addAction:alertAction];
+    
+    [self presentViewController:noCameraAlert animated:YES completion:^{
+    }];
+    
+
+    
+}
 
 -(void) showFailureAlert {
     
@@ -108,6 +153,7 @@
 
 
 -(void) showSuccessAlert {
+    
     NSString* resultAlertStr = [NSString stringWithFormat:@"'%@ %@'\nSuccessfuly created",self.firstNameField.text, self.lastNameField.text];
     
     UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"Saved!" message:resultAlertStr preferredStyle:UIAlertControllerStyleAlert];
@@ -120,16 +166,32 @@
 
 
 
+#pragma mark - UIImagePickerControllerDelegate
+
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    self.imageView.image = chosenImage;
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+
+
 
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
-    //NSLog(@"textField %@",textField.text);
-    //NSLog(@"%@",string);
-    
     NSString* resultStr = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    
    
     NSCharacterSet* decimals = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
     NSArray* components = [string componentsSeparatedByCharactersInSet:decimals];
@@ -147,6 +209,7 @@
     
     return YES;
 }
+
 
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

@@ -81,12 +81,8 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rv7-hr-1Tn">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bmH-Nz-UZO">
-                                        <rect key="frame" x="42" y="318" width="236" height="125"/>
-                                        <animations/>
-                                    </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="first name*" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="OAo-37-kxN">
-                                        <rect key="frame" x="20" y="22" width="280" height="30"/>
+                                        <rect key="frame" x="20" y="22" width="207" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next"/>
@@ -95,7 +91,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="last name*" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="SXr-3r-7Lp">
-                                        <rect key="frame" x="20" y="60" width="280" height="30"/>
+                                        <rect key="frame" x="20" y="60" width="207" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next"/>
@@ -122,12 +118,32 @@
                                         </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="*required fields" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rzI-dw-tGg">
-                                        <rect key="frame" x="25" y="199" width="271" height="21"/>
+                                        <rect key="frame" x="20" y="0.0" width="83" height="21"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tam-dY-5fw">
+                                        <rect key="frame" x="20" y="174" width="107" height="30"/>
+                                        <animations/>
+                                        <state key="normal" title="Take a Photo"/>
+                                        <connections>
+                                            <action selector="takeAPhoto:" destination="UBS-LN-OJx" eventType="touchUpInside" id="vkX-5X-dD7"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eXf-EM-Bo2">
+                                        <rect key="frame" x="193" y="174" width="107" height="30"/>
+                                        <animations/>
+                                        <state key="normal" title="Choose Photo"/>
+                                        <connections>
+                                            <action selector="choosePhoto:" destination="UBS-LN-OJx" eventType="touchUpInside" id="BxG-i0-8g8"/>
+                                        </connections>
+                                    </button>
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="camera.icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="bmH-Nz-UZO">
+                                        <rect key="frame" x="235" y="22" width="65" height="68"/>
+                                        <animations/>
+                                    </imageView>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" red="0.986328125" green="0.986328125" blue="0.986328125" alpha="1" colorSpace="calibratedRGB"/>
@@ -148,6 +164,7 @@
                     <connections>
                         <outlet property="emailField" destination="oq5-Sk-d67" id="H7W-6p-5PG"/>
                         <outlet property="firstNameField" destination="OAo-37-kxN" id="Blb-eW-xif"/>
+                        <outlet property="imageView" destination="bmH-Nz-UZO" id="1Q9-A2-9a0"/>
                         <outlet property="lastNameField" destination="SXr-3r-7Lp" id="B6Z-Q9-ehB"/>
                         <outlet property="phoneNumberField" destination="ZAJ-bC-x6N" id="9ii-vO-pDX"/>
                     </connections>
@@ -172,13 +189,13 @@
                                 <rect key="frame" x="0.0" y="61" width="320" height="507"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="phone number" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="wVD-wr-Spg">
-                                        <rect key="frame" x="20" y="185" width="280" height="30"/>
+                                        <rect key="frame" x="20" y="165" width="280" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="done"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="last name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="LKL-6P-xFB">
-                                        <rect key="frame" x="20" y="109" width="280" height="30"/>
+                                        <rect key="frame" x="110" y="89" width="190" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next"/>
@@ -187,7 +204,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="first name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ey3-Xo-bdO">
-                                        <rect key="frame" x="20" y="71" width="280" height="30"/>
+                                        <rect key="frame" x="110" y="51" width="190" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next"/>
@@ -196,11 +213,15 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e-mail" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Fw3-hA-gzl">
-                                        <rect key="frame" x="20" y="147" width="280" height="30"/>
+                                        <rect key="frame" x="20" y="127" width="280" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next"/>
                                     </textField>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fLs-j2-pAg">
+                                        <rect key="frame" x="20" y="39" width="80" height="80"/>
+                                        <animations/>
+                                    </imageView>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" red="0.986328125" green="0.986328125" blue="0.986328125" alpha="1" colorSpace="calibratedRGB"/>
@@ -213,6 +234,7 @@
                     <connections>
                         <outlet property="emailFeeld" destination="Fw3-hA-gzl" id="hoQ-sY-wLh"/>
                         <outlet property="firstNameField" destination="ey3-Xo-bdO" id="apg-wf-eOx"/>
+                        <outlet property="imageView" destination="fLs-j2-pAg" id="GYc-c9-esO"/>
                         <outlet property="lastNameField" destination="LKL-6P-xFB" id="DSt-xL-Vom"/>
                         <outlet property="phoneNumberField" destination="wVD-wr-Spg" id="O8M-7h-rS5"/>
                     </connections>
@@ -289,4 +311,7 @@
             <point key="canvasLocation" x="30" y="585"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="camera.icon.png" width="512" height="512"/>
+    </resources>
 </document>
