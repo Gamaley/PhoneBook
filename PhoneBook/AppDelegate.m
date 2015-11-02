@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "VGTableViewController.h"
 
+
+
 @interface AppDelegate ()
 
 @end
@@ -17,6 +19,14 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    NSError* error = nil;
+    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* documentsDirectory = [paths objectAtIndex:0];
+    NSString* dataPath = [documentsDirectory stringByAppendingPathComponent:@"/Contacts"];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:dataPath])
+        [[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:&error]; 
     
     return YES;
 }

@@ -21,13 +21,10 @@
 
 @implementation VGCreateViewController
 
-- (IBAction)backSegueButton:(id)sender {
-    
-    [self performSegueWithIdentifier:@"back" sender:self];
-}
 
 
 - (IBAction)saveBarButton:(UIBarButtonItem *)sender {
+    
     
 
     NSArray* fields = @[self.firstNameField, self.lastNameField, self.emailField, self.phoneNumberField];
@@ -40,8 +37,10 @@
         [self showFailureAlert];
     } else {
     [self showSuccessAlert];
+        [self createPlist];
     }
-    [self createPlist];
+    
+    
 }
 
 
@@ -51,22 +50,33 @@
     NSArray* pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     
     NSString* docunentDirectory = [pathArray objectAtIndex:0];
+    
+    NSString* contactsPath = [docunentDirectory stringByAppendingPathComponent:@"/Contacts"];
+    
     NSString* namePlist = [NSString stringWithFormat:@"%@ %@.plist",self.firstNameField.text, self.lastNameField.text];
     
-    NSString* newDocumentDir = [docunentDirectory stringByAppendingPathComponent:namePlist];
+    
+    NSString* newDocumentDir = [contactsPath stringByAppendingPathComponent:namePlist];
+    
+    
     
     NSMutableArray* arr = [[NSMutableArray alloc] init];
     [arr addObject:self.firstNameField.text];
     [arr addObject:self.lastNameField.text];
-    //[arr addObject:@"Xcode"];
+    [arr addObject:self.emailField.text];
+    [arr addObject:self.phoneNumberField.text];
+   
     
     [arr writeToFile:newDocumentDir atomically:YES];
+  
     //
     //    NSString* str =  NSTemporaryDirectory();
     //    NSLog(@"%@",newDocumentDir);
     //
     
 }
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -78,27 +88,7 @@
 }
 
 
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    VGTableViewController* vc = (VGTableViewController*)segue.destinationViewController;
-    VGPerson* person = [[VGPerson alloc] init];
-    person.firstName = self.firstNameField.text;
-    person.lastName = self.lastNameField.text;
-    vc.person = person;
-    
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- /*
- -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- DetailViewController* vc = (DetailViewController*)segue.destinationViewController;
- vc.result = self.urlStr;
- 
- }
-*/
 
 #pragma mark - UIAlertController
 
@@ -116,30 +106,31 @@
     }];
 }
 
+
 -(void) showSuccessAlert {
     NSString* resultAlertStr = [NSString stringWithFormat:@"'%@ %@'\nSuccessfuly created",self.firstNameField.text, self.lastNameField.text];
     
     UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"Saved!" message:resultAlertStr preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* alertAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-        [self performSegueWithIdentifier:@"back" sender:self];
-    }];
+    UIAlertAction* alertAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
     [alertController addAction:alertAction];
-    
     [self presentViewController:alertController animated:YES completion:nil];
+    
 }
+
+
+
+
 
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
-    NSLog(@"textField %@",textField.text);
-    NSLog(@"%@",string);
+    //NSLog(@"textField %@",textField.text);
+    //NSLog(@"%@",string);
     
     NSString* resultStr = [textField.text stringByReplacingCharactersInRange:range withString:string];
     
    
-    
     NSCharacterSet* decimals = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
     NSArray* components = [string componentsSeparatedByCharactersInSet:decimals];
     

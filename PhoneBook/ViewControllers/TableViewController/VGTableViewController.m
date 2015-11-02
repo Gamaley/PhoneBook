@@ -8,74 +8,92 @@
 
 #import "VGTableViewController.h"
 #import "VGPerson.h"
+#import "VGCustomCell.h"
+#import "VGDetailViewController.h"
 
 @interface VGTableViewController ()
 
 @property(strong,nonatomic) NSString* path;
-@property (strong,nonatomic) NSArray* contents;
-
-@property (strong, nonatomic) IBOutlet UITableView *tablePhoneView;
+@property (strong,nonatomic) NSMutableArray* contents;
 
 @end
 
 @implementation VGTableViewController
-/*
-- (id)initWithFolderPath:(NSString*) path {
 
-    self = [super initWithStyle:UITableViewStyleGrouped];
+
+
+-(id)loadPlistAtIndexPath: (NSIndexPath*) path {
     
-    if (self) {
-        self.path = path;
-        NSError* error = nil;
-        self.contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.path error:&error];
-        
-        if (error) {
-            NSLog(@"%@",[error localizedDescription]);
-        }
+    NSString* str = [NSString stringWithFormat:@"%@/%@",self.path, [self.contents objectAtIndex:path.row]];
+    
+    NSData* plistData = [NSData dataWithContentsOfFile:str];
+    
+    if (!plistData) {
+        NSLog(@"ERROR");
+        return nil;
     }
-    return self;
+    
+    NSError* error = nil;
+    NSPropertyListFormat format;
+    
+    id plist = [NSPropertyListSerialization propertyListWithData:plistData options:NSPropertyListMutableContainersAndLeaves format:&format error:&error];
+    
+    if (!error) {
+        NSMutableArray* root = plist;
+        NSLog(@"%@",root);
+        return root;
+    }
+    
+    return plist;
+    
 }
-*/
+
+
+//-(void) setPath:(NSString *)path {
+//    _path = path;
+//    
+//    NSError* error = nil;
+//    
+//    self.contents = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.path error:&error]mutableCopy];
+//    
+//    if (error) {
+//        NSLog(@"%@",[error localizedDescription]);
+//    }
+//    //[self.tableView reloadData];
+//}
+
+
 - (void)viewWillAppear:(BOOL)animated {
-     [self.tablePhoneView reloadData];
     NSLog(@"%ld",[self.navigationController.viewControllers count]);
     [super viewWillAppear:animated];
+    
+    //
+    
+    NSArray* pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSLog(@"%@",pathArray);
+    
+    self.path = [NSString stringWithFormat:@"%@/Contacts",[pathArray objectAtIndex:0]];
+    
+    NSError* error = nil;
+    self.contents = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.path error:&error] mutableCopy];
+    
+    if ([self.contents containsObject:@".DS_Store"]) {
+        [self.contents removeObject:@".DS_Store"];
+    }
+    
+    if (error) {
+        NSLog(@"%@",[error localizedDescription]);
+    }
+    
+    //
+    
+    [self.tableView reloadData];
     
 }
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
-    
-    
-    
-    NSArray* pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//NSLog(@"%@",pathArray);
-    
-    self.path = [pathArray objectAtIndex:0];
-    
-    NSError* error = nil;
-    self.contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.path error:&error];
-    [self.contents count];
-    if (error) {
-        NSLog(@"%@",[error localizedDescription]);
-    }
 
-    
-    self.person = [[VGPerson alloc] init];
-    self.cells = [[NSMutableArray alloc] init];
-   
-       // NSLog(@"%@",self.path);
-    
-   
-
-
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,10 +101,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
+   
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -98,18 +118,19 @@
     
     static NSString* Identifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier];
+    VGCustomCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier];
     
     
     if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
+        cell = [[VGCustomCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:Identifier];
     }
     
-    NSString* fileName = [self.contents objectAtIndex:indexPath.row];
+    NSMutableArray* arr = [self loadPlistAtIndexPath:indexPath];
     
-    //VGPerson* person = [self.contents objectAtIndex:indexPath.row];
+    NSString* nameFieldString = [NSString stringWithFormat:@"%@ %@",[arr objectAtIndex:0],[arr objectAtIndex:1]];
     
-    cell.textLabel.text = fileName;
+    cell.nameLabel.text = nameFieldString;
+    
     
     return cell;
 }
@@ -120,8 +141,24 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self performSegueWithIdentifier:@"pushDetail" sender:self];
     
+    VGDetailViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"VGDetailViewController"];
+    
+    NSMutableArray* arr = [self loadPlistAtIndexPath:indexPath];
+    NSLog(@"%li",[arr count]);
+    vc.firstName = [arr objectAtIndex:0];
+    vc.lastName = [arr objectAtIndex:1];
+    
+    if ([arr count] == 3 ) {
+        vc.email = [arr objectAtIndex:2];
+    }
+    if ([arr count] == 4) {
+        vc.email = [arr objectAtIndex:2];
+        vc.phone = [arr objectAtIndex:3];
+    }
+    
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*

@@ -12,7 +12,6 @@
 		87443CE41BE10B5700EC70F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87443CE21BE10B5700EC70F2 /* Main.storyboard */; };
 		87443CE61BE10B5700EC70F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87443CE51BE10B5700EC70F2 /* Assets.xcassets */; };
 		87443CE91BE10B5700EC70F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87443CE71BE10B5700EC70F2 /* LaunchScreen.storyboard */; };
-		87443CF21BE11D5600EC70F2 /* VGCancelSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 87443CF11BE11D5600EC70F2 /* VGCancelSegue.m */; };
 		87443CF71BE11DDC00EC70F2 /* VGTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87443CF61BE11DDC00EC70F2 /* VGTableViewController.m */; };
 		87443D051BE1285000EC70F2 /* VGSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87443D041BE1285000EC70F2 /* VGSettingsViewController.m */; };
 		87443D081BE1288600EC70F2 /* VGDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87443D071BE1288600EC70F2 /* VGDetailViewController.m */; };
@@ -30,8 +29,6 @@
 		87443CE51BE10B5700EC70F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		87443CE81BE10B5700EC70F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		87443CEA1BE10B5700EC70F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		87443CF01BE11D5600EC70F2 /* VGCancelSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGCancelSegue.h; path = Segues/VGCancelSegue.h; sourceTree = "<group>"; };
-		87443CF11BE11D5600EC70F2 /* VGCancelSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGCancelSegue.m; path = Segues/VGCancelSegue.m; sourceTree = "<group>"; };
 		87443CF51BE11DDC00EC70F2 /* VGTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGTableViewController.h; path = ViewControllers/TableViewController/VGTableViewController.h; sourceTree = "<group>"; };
 		87443CF61BE11DDC00EC70F2 /* VGTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGTableViewController.m; path = ViewControllers/TableViewController/VGTableViewController.m; sourceTree = "<group>"; };
 		87443D031BE1285000EC70F2 /* VGSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGSettingsViewController.h; path = ViewControllers/SettingsViewController/VGSettingsViewController.h; sourceTree = "<group>"; };
@@ -100,8 +97,6 @@
 		87443CF31BE11D5C00EC70F2 /* Segue */ = {
 			isa = PBXGroup;
 			children = (
-				87443CF01BE11D5600EC70F2 /* VGCancelSegue.h */,
-				87443CF11BE11D5600EC70F2 /* VGCancelSegue.m */,
 			);
 			name = Segue;
 			sourceTree = "<group>";
@@ -264,7 +259,6 @@
 				87443D081BE1288600EC70F2 /* VGDetailViewController.m in Sources */,
 				87443D0F1BE1525200EC70F2 /* VGCustomCell.m in Sources */,
 				87443CDE1BE10B5700EC70F2 /* AppDelegate.m in Sources */,
-				87443CF21BE11D5600EC70F2 /* VGCancelSegue.m in Sources */,
 				87443D0B1BE128B400EC70F2 /* VGCreateViewController.m in Sources */,
 				87443CF71BE11DDC00EC70F2 /* VGTableViewController.m in Sources */,
 				87443D051BE1285000EC70F2 /* VGSettingsViewController.m in Sources */,
