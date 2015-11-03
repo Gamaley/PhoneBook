@@ -102,16 +102,25 @@
     
     NSData* dataImage = UIImagePNGRepresentation(self.imageView.image);
     
+    NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     
-    NSMutableArray* arr = [[NSMutableArray alloc] init];
-    [arr addObject:self.firstNameField.text];
-    [arr addObject:self.lastNameField.text];
-    [arr addObject:self.emailField.text];
-    [arr addObject:self.phoneNumberField.text];
-    [arr addObject:dataImage];
-   
+    [dict setObject:self.firstNameField.text forKey:@"firstName"];
+    [dict setObject:self.lastNameField.text forKey:@"lastName"];
+    [dict setObject:self.emailField.text forKey:@"email"];
+    [dict setObject:self.phoneNumberField.text forKey:@"phone"];
+    [dict setObject:dataImage forKey:@"image"];
+    [dict writeToFile:newDocumentDir atomically:YES];
     
-    [arr writeToFile:newDocumentDir atomically:YES];
+    
+//    NSMutableArray* arr = [[NSMutableArray alloc] init];
+//    [arr addObject:self.firstNameField.text];
+//    [arr addObject:self.lastNameField.text];
+//    [arr addObject:self.emailField.text];
+//    [arr addObject:self.phoneNumberField.text];
+//    [arr addObject:dataImage];
+//   
+//    
+//    [arr writeToFile:newDocumentDir atomically:YES];
   
     
 }

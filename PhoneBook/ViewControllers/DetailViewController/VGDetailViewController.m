@@ -15,14 +15,26 @@
 @property (weak, nonatomic) IBOutlet UITextField *emailFeeld;
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumberField;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonEdit;
 
 @end
 
 @implementation VGDetailViewController
 
+
+-(IBAction)editAction:(UIBarButtonItem*)sender {
+   
+    [self.firstNameField setEnabled:YES];
+    [self.lastNameField setEnabled:YES];
+    [self.emailFeeld setEnabled:YES];
+    [self.phoneNumberField setEnabled:YES];
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"%ld",[self.navigationController.viewControllers count]);
+    
     
     self.firstNameField.text = self.firstName;
     self.lastNameField.text = self.lastName;

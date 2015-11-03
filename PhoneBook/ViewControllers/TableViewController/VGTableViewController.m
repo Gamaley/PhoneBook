@@ -13,8 +13,9 @@
 
 @interface VGTableViewController ()
 
-@property(strong,nonatomic) NSString* path;
+@property (strong,nonatomic) NSString* path;
 @property (strong,nonatomic) NSMutableArray* contents;
+@property (strong,nonatomic) VGPerson* person;
 
 @end
 
@@ -39,10 +40,29 @@
     id plist = [NSPropertyListSerialization propertyListWithData:plistData options:NSPropertyListMutableContainersAndLeaves format:&format error:&error];
     
     if (!error) {
-        NSMutableArray* root = plist;
-       // NSLog(@"%@",root);
-        return root;
+        NSMutableDictionary* root = plist;
+        
+        VGPerson* person = [[VGPerson alloc] init];
+        person.firstName = [root objectForKey:@"firstName"];
+        
+        person.lastName = [root objectForKey:@"lastName"];
+        
+        
+        if ([root objectForKey:@"email"]) {
+           person.email = [root objectForKey:@"email"];
+        }
+        
+        if ([root objectForKey:@"phone"]) {
+            person.phoneNumber = [root objectForKey:@"phone"];
+        }
+        
+        if ([root objectForKey:@"image"]) {
+            person.image = [root objectForKey:@"image"];
+        }
+        
+        return person;
     }
+    
     
     return nil;
     
@@ -106,13 +126,11 @@
         cell = [[VGCustomCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:Identifier];
     }
     
-    NSMutableArray* arr = [self loadPlistAtIndexPath:indexPath];
+    self.person = [self loadPlistAtIndexPath:indexPath];
     
     
-    NSString* nameFieldString = [NSString stringWithFormat:@"%@ %@",[arr objectAtIndex:0],[arr objectAtIndex:1]];
-    
-    cell.nameLabel.text = nameFieldString;
-    //cell.imageView.image =
+    cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@",_person.firstName,_person.lastName];
+    cell.image.image = [UIImage imageWithData:self.person.image]; 
     
     
     return cell;
@@ -126,24 +144,14 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     VGDetailViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"VGDetailViewController"];
+
+    VGPerson* person = [self loadPlistAtIndexPath:indexPath];
     
-    NSMutableArray* arr = [self loadPlistAtIndexPath:indexPath];
-    NSLog(@"%li",[arr count]);
-    vc.firstName = [arr objectAtIndex:0];
-    vc.lastName = [arr objectAtIndex:1];
-    
-    if ([arr count] == 3 ) {
-        vc.email = [arr objectAtIndex:2];
-    }
-    if ([arr count] == 4) {
-        vc.email = [arr objectAtIndex:2];
-        vc.phone = [arr objectAtIndex:3];
-    }
-    if ([arr count] == 5) {
-        vc.email = [arr objectAtIndex:2];
-        vc.phone = [arr objectAtIndex:3];
-        vc.dataImage = [arr objectAtIndex:4];
-    }
+    vc.firstName = person.firstName;
+    vc.lastName = person.lastName;
+    vc.email = person.email;
+    vc.phone = person.phoneNumber;
+    vc.dataImage = person.image;
     
     [self.navigationController pushViewController:vc animated:YES];
 }
