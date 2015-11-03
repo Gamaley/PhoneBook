@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
-        <!--My Phone Contacts-->
+        <!--My Contacts-->
         <scene sceneID="qlL-PI-SCX">
             <objects>
                 <tableViewController id="mpl-gC-UNU" customClass="VGTableViewController" sceneMemberID="viewController">
@@ -49,8 +49,8 @@
                             <outlet property="delegate" destination="mpl-gC-UNU" id="ucN-Ig-sLR"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My Phone Contacts" id="fRe-td-PTa">
-                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="cVg-M8-ilQ">
+                    <navigationItem key="navigationItem" title="My Contacts" id="fRe-td-PTa">
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="cVg-M8-ilQ">
                             <connections>
                                 <segue destination="BDV-60-4Ay" kind="push" id="EzY-j2-jeX"/>
                             </connections>
@@ -231,7 +231,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Details" id="n55-We-Omj">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="gJn-9n-ANG">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="gJn-9n-ANG">
                             <connections>
                                 <action selector="editAction:" destination="yI5-uV-ifO" id="iCW-kP-QKA"/>
                             </connections>

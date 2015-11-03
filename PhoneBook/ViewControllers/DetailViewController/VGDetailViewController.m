@@ -22,19 +22,11 @@
 @implementation VGDetailViewController
 
 
--(IBAction)editAction:(UIBarButtonItem*)sender {
-   
-    [self.firstNameField setEnabled:YES];
-    [self.lastNameField setEnabled:YES];
-    [self.emailFeeld setEnabled:YES];
-    [self.phoneNumberField setEnabled:YES];
-    
-}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"%ld",[self.navigationController.viewControllers count]);
-    
     
     self.firstNameField.text = self.firstName;
     self.lastNameField.text = self.lastName;
@@ -50,5 +42,44 @@
 
 }
 
+#pragma mark - UIBarButtonItem
+
+-(IBAction)editAction:(UIBarButtonItem*)sender {
+    
+    if (![self.firstNameField isEnabled]) {
+        
+    [sender setTitle:@"Save"];
+    
+    UIBarButtonItem* left = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelBarButtonItem)];
+    [self.navigationItem setLeftBarButtonItem:left animated:NO];
+    
+    
+    [self.firstNameField setEnabled:YES];
+    [self.lastNameField setEnabled:YES];
+    [self.emailFeeld setEnabled:YES];
+    [self.phoneNumberField setEnabled:YES];
+        
+    } else {
+        [self saveToPlist];
+    }
+    
+    
+}
+
+-(void) cancelBarButtonItem {
+    self.navigationItem.leftBarButtonItem = nil;
+    
+    [self.barButtonEdit setTitle:@"Edit"];
+    [self.firstNameField setEnabled:NO];
+    [self.lastNameField setEnabled:NO];
+    [self.emailFeeld setEnabled:NO];
+    [self.phoneNumberField setEnabled:NO];
+}
+
+
+-(void) saveToPlist {
+    
+    
+}
 
 @end
