@@ -27,9 +27,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        [self noCameraAlert];
-    }
     
 }
 
@@ -45,6 +42,11 @@
 #pragma mark - IBAction
 
 -(IBAction)takeAPhoto:(id)sender {
+    
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        [self noCameraAlert];
+        return;
+    }
     
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
