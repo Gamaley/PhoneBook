@@ -16,6 +16,8 @@
 @property (strong,nonatomic) NSString* path;
 @property (strong,nonatomic) NSMutableArray* contents;
 @property (strong,nonatomic) VGPerson* person;
+@property (assign,nonatomic) BOOL isBlack;
+@property (assign,nonatomic) BOOL isLastNameFirst;
 
 @end
 
@@ -69,10 +71,16 @@
     
 }
 
+#pragma mark - UIViewController
 
 - (void)viewWillAppear:(BOOL)animated {
     NSLog(@"%ld",[self.navigationController.viewControllers count]);
     [super viewWillAppear:animated];
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    
+    self.isBlack = [[defaults valueForKey:@"black"] boolValue];
+    self.isLastNameFirst = [[defaults valueForKey:@"last"] boolValue];
     
     NSArray* pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     //NSLog(@"%@",pathArray);
@@ -104,6 +112,7 @@
 }
 
 
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -129,11 +138,17 @@
     
     self.person = [self loadPlistAtIndexPath:indexPath];
     
+    NSString* tableLabelStrig;
     
-    cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@",_person.firstName,_person.lastName];
-    cell.image.image = [UIImage imageWithData:self.person.image]; 
+    if (self.isLastNameFirst) {
     
-    
+    tableLabelStrig = [NSString stringWithFormat:@"%@ %@",self.person.lastName, self.person.firstName];
+    } else {
+    tableLabelStrig = [NSString stringWithFormat:@"%@ %@",self.person.firstName, self.person.lastName];
+    }
+ 
+    cell.nameLabel.text = tableLabelStrig;
+    cell.image.image = [UIImage imageWithData:self.person.image];
     return cell;
 }
 
@@ -156,5 +171,27 @@
     
     [self.navigationController pushViewController:vc animated:YES];
 }
+
+
+-(void) tableView:(UITableView *)tableView willDisplayCell:(VGCustomCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    BOOL isBlack = [[defaults objectForKey:@"black"] boolValue];
+    
+    if (isBlack) {
+        tableView.backgroundColor = [UIColor blackColor];
+        cell.backgroundColor = [UIColor blackColor];
+        cell.nameLabel.textColor = [UIColor whiteColor];
+        
+        
+    } else {
+        tableView.backgroundColor = [UIColor whiteColor];
+        cell.backgroundColor = [UIColor whiteColor];
+        cell.nameLabel.textColor = [UIColor blackColor];
+        
+    }
+    
+}
+
 
 @end
