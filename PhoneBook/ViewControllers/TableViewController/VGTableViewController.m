@@ -73,6 +73,7 @@
 
 #pragma mark - UIViewController
 
+
 - (void)viewWillAppear:(BOOL)animated {
     NSLog(@"%ld",[self.navigationController.viewControllers count]);
     [super viewWillAppear:animated];
@@ -104,6 +105,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
 
 }
 
@@ -152,6 +154,29 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+   
+    NSFileManager* fm = [NSFileManager defaultManager];
+    
+    NSString* str = [NSString stringWithFormat:@"%@/%@",self.path, [self.contents objectAtIndex:indexPath.row]];
+     NSError* error = nil;
+    
+    [fm removeItemAtPath:str error:&error];
+    
+    
+    
+    [self.contents removeObjectAtIndex:indexPath.row];
+    
+    [tableView beginUpdates];
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    [tableView endUpdates];
+    
+    
+}
+
+
+
 
 #pragma mark - UITableViewDelegate
 
@@ -192,6 +217,18 @@
     }
     
 }
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
+
+
+- (nullable NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return @"Remove";
+    
+}
+
+
 
 
 @end

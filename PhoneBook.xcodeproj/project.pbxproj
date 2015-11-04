@@ -80,8 +80,6 @@
 				87443D101BE1525700EC70F2 /* CustomCell */,
 				87443CFD1BE1272500EC70F2 /* ViewControllers */,
 				87443CFE1BE1274E00EC70F2 /* StoryBoards */,
-				87443CEA1BE10B5700EC70F2 /* Info.plist */,
-				87443CF31BE11D5C00EC70F2 /* Segue */,
 				87443CF41BE11D6800EC70F2 /* AppDelegate */,
 				87443CD91BE10B5700EC70F2 /* Supporting Files */,
 			);
@@ -91,17 +89,11 @@
 		87443CD91BE10B5700EC70F2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				87443CEA1BE10B5700EC70F2 /* Info.plist */,
 				87443CE51BE10B5700EC70F2 /* Assets.xcassets */,
 				87443CDA1BE10B5700EC70F2 /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		87443CF31BE11D5C00EC70F2 /* Segue */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Segue;
 			sourceTree = "<group>";
 		};
 		87443CF41BE11D6800EC70F2 /* AppDelegate */ = {
