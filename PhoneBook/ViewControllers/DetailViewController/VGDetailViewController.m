@@ -68,6 +68,8 @@
         [self.chosePhoto setEnabled:YES];
         
     } else {
+        if (![self.firstNameField.text  isEqual: @""] || ![self.lastNameField.text  isEqual: @""]) {
+            
         [self saveToPlist];
         [self.barButtonEdit setTitle:@"Edit"];
         [self.firstNameField setEnabled:NO];
@@ -77,6 +79,7 @@
         [self.takePhoto setEnabled:NO];
         [self.chosePhoto setEnabled:NO];
         self.navigationItem.leftBarButtonItem = nil;
+        }
     }
     
     
@@ -92,6 +95,8 @@
     [self.phoneNumberField setEnabled:NO];
     [self.takePhoto setEnabled:NO];
     [self.chosePhoto setEnabled:NO];
+    
+    
 }
 
 #pragma mark - Plist Creation Methods
