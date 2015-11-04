@@ -94,7 +94,7 @@
     [self.chosePhoto setEnabled:NO];
 }
 
-
+#pragma mark - Plist Creation Methods
 
 -(void) saveToPlist {
     
@@ -196,5 +196,45 @@
     
 }
 
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    NSString* resultStr = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    NSCharacterSet* decimals = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+    NSArray* components = [string componentsSeparatedByCharactersInSet:decimals];
+    
+    if ([textField isEqual:self.phoneNumberField]) {
+        
+        if ([resultStr length] > 12) {
+            return NO;
+        }
+        
+        if ([components count] > 1) {
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    if ([textField isEqual:self.firstNameField]) {
+        [self.lastNameField becomeFirstResponder];
+    } else if ([textField isEqual:self.lastNameField]) {
+        [self.emailFeeld becomeFirstResponder];
+    } else if ([textField isEqual:self.emailFeeld]) {
+        [self.phoneNumberField becomeFirstResponder];
+    } else {
+        [textField resignFirstResponder];
+    }
+    
+   return YES;
+    
+}
 
 @end

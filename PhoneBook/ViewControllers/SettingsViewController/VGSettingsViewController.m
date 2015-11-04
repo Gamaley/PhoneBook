@@ -19,6 +19,8 @@
 
 @implementation VGSettingsViewController
 
+#pragma mark - Actions
+
 - (IBAction)actionSegmentControl:(UISegmentedControl *)sender {
     
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
@@ -58,6 +60,29 @@
 }
 
 
+#pragma mark - Helper Methods
+
+-(BOOL) checkIfRowExist {
+    
+    NSFileManager* fm = [NSFileManager defaultManager];
+    NSArray* pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* docunentDirectory = [pathArray objectAtIndex:0];
+    NSString* contactsPath = [docunentDirectory stringByAppendingPathComponent:@"/Contacts"];
+    
+    NSError* error = nil;
+    NSArray* contentsContacts = [fm contentsOfDirectoryAtPath:contactsPath error:&error];
+    
+    BOOL isExist = YES;
+    
+    if ([contentsContacts count] == 0) {
+        isExist = NO;
+    }
+    
+    return isExist;
+}
+
+#pragma mark - UIViewController
+
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -84,7 +109,7 @@
         self.view.backgroundColor = [UIColor whiteColor];
         self.switchLabel.textColor = [UIColor blackColor];
     }
-
+    
     if (isLast) {
         [self.isLastNameFirst setSelectedSegmentIndex:1];
     } else {
@@ -93,34 +118,15 @@
     
 }
 
--(BOOL) checkIfRowExist {
-    
-    NSFileManager* fm = [NSFileManager defaultManager];
-    NSArray* pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString* docunentDirectory = [pathArray objectAtIndex:0];
-    NSString* contactsPath = [docunentDirectory stringByAppendingPathComponent:@"/Contacts"];
-    
-    NSError* error = nil;
-    NSArray* contentsContacts = [fm contentsOfDirectoryAtPath:contactsPath error:&error];
-    
-    BOOL isExist = YES;
-    
-    if ([contentsContacts count] == 0) {
-        isExist = NO;
-    }
-    
-    return isExist;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
 
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
+
 
 @end
