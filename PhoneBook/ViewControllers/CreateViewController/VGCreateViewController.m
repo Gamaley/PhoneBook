@@ -113,18 +113,6 @@
     [dict setObject:dataImage forKey:@"image"];
     [dict writeToFile:newDocumentDir atomically:YES];
     
-    
-//    NSMutableArray* arr = [[NSMutableArray alloc] init];
-//    [arr addObject:self.firstNameField.text];
-//    [arr addObject:self.lastNameField.text];
-//    [arr addObject:self.emailField.text];
-//    [arr addObject:self.phoneNumberField.text];
-//    [arr addObject:dataImage];
-//   
-//    
-//    [arr writeToFile:newDocumentDir atomically:YES];
-  
-    
 }
 
 
