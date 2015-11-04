@@ -65,6 +65,15 @@
     BOOL isBlack = [[defaults objectForKey:@"black"] boolValue];
     BOOL isLast = [[defaults objectForKey:@"last"] boolValue];
     
+    if (![self checkIfRowExist]) {
+        [self.isLastNameFirst setEnabled:NO];
+        [self.switchLabel setEnabled:NO];
+    } else {
+        
+        [self.isLastNameFirst setEnabled:YES];
+        [self.switchLabel setEnabled:YES];
+    }
+    
     
     if (isBlack) {
         [self.blakInterfaceSwitch setOn:YES];
@@ -78,32 +87,40 @@
 
     if (isLast) {
         [self.isLastNameFirst setSelectedSegmentIndex:1];
-       // [defaults setObject:@1 forKey:@"last"];
     } else {
         [self.isLastNameFirst setSelectedSegmentIndex:0];
-        //[defaults setObject:@0 forKey:@"last"];
     }
     
 }
 
+-(BOOL) checkIfRowExist {
+    
+    NSFileManager* fm = [NSFileManager defaultManager];
+    NSArray* pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* docunentDirectory = [pathArray objectAtIndex:0];
+    NSString* contactsPath = [docunentDirectory stringByAppendingPathComponent:@"/Contacts"];
+    
+    NSError* error = nil;
+    NSArray* contentsContacts = [fm contentsOfDirectoryAtPath:contactsPath error:&error];
+    
+    BOOL isExist = YES;
+    
+    if ([contentsContacts count] == 0) {
+        isExist = NO;
+    }
+    
+    return isExist;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
 
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

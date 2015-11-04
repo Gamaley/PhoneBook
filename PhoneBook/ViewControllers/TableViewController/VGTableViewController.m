@@ -99,6 +99,11 @@
         NSLog(@"%@",[error localizedDescription]);
     }
     
+    NSSortDescriptor* descriptor = [[NSSortDescriptor alloc] initWithKey:@"self" ascending:YES];
+    [self.contents sortUsingDescriptors:@[descriptor]];
+    
+    
+    
     [self.tableView reloadData];
     
 }

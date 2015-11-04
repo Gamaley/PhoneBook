@@ -168,7 +168,14 @@
     NSString* resultAlertStr = [NSString stringWithFormat:@"'%@ %@'\nSuccessfuly created",self.firstNameField.text, self.lastNameField.text];
     
     UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"Saved!" message:resultAlertStr preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* alertAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
+    UIAlertAction* alertAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        self.firstNameField.text = @"";
+        self.lastNameField.text = @"";
+        self.emailField.text = @"";
+        self.phoneNumberField.text = @"";
+        
+    }];
     [alertController addAction:alertAction];
     [self presentViewController:alertController animated:YES completion:nil];
     
